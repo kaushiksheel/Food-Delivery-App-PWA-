@@ -52,7 +52,7 @@ export const Navbar = () => {
             <Link className="font-semibold text-2xl md:text-4xl" to={"/"}>
               HungryHero
             </Link>
-            <div className=" flex space-x-8 items-center">
+            <div className=" flex space-x-4 md:space-x-8 items-center">
               {modifiedNavLinks.map(({ href, id, title }) => (
                 <li
                   style={{

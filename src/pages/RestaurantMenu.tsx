@@ -16,6 +16,7 @@ import {
   IRestaurantMenuItem,
 } from "../interfaces/IRestaurant";
 import { MenuItem } from "../components/MenuItem";
+import { Toaster } from "react-hot-toast";
 
 function RestaurantMenu() {
   const params = useParams();
@@ -146,6 +147,14 @@ function RestaurantMenu() {
           </div>
         </Container>
       </main>
+    <Toaster
+    position="top-right"
+    toastOptions={{
+      style: {
+        fontSize: 14
+      }
+    }}
+    />
     </>
   );
 }

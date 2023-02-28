@@ -8,6 +8,8 @@ import {
 import { IMG_CDN_URL } from "./Card";
 import { VegIcon } from "./VegIcon";
 import { motion } from "framer-motion";
+import { useAuthListener } from "../hooks/useAuthListener";
+import { toast } from "react-hot-toast";
 
 export const MenuItem: FC<{
   item: IRestaurantMenuItem;
@@ -16,6 +18,7 @@ export const MenuItem: FC<{
 }> = ({ item, addToCart }) => {
   const { name, cloudinaryImageId, description, price, isVeg, quantity } = item;
 
+  const { user } = useAuthListener();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -41,16 +44,18 @@ export const MenuItem: FC<{
         />
         <div className="box border-2 bg-white flex items-center justify-between absolute  bottom-1 w-[70%]  p-2">
           <button
-            onClick={() =>
-              addToCart({
-                name,
-                cloudinaryImageId,
-                description,
-                price,
-                isVeg,
-                quantity: quantity as number,
-              })
-            }
+            onClick={() => {
+              user
+                ? addToCart({
+                    name,
+                    cloudinaryImageId,
+                    description,
+                    price,
+                    isVeg,
+                    quantity: quantity as number,
+                  })
+                : toast.error("Login required");
+            }}
             className="text-green-600  mx-auto font-medium text-xl "
           >
             Add
